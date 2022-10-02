@@ -150,13 +150,13 @@ def form(fullPatientInfos):
                             return_likelihoods='NONE'
                         ).generations[0].text
             question_answers.append((request.form['question'], answer))
-        for qa in question_answers:
-            conversation = conversation + qa[0] + '\n' + qa[1] + '\n'
+        #for qa in question_answers:
+        #    conversation = conversation + qa[0] + '\n' + qa[1] + '\n'
 
     return render_template('form.html',
                            patientName=patientInfos[0], doctorName=patientInfos[1],
                            Symptoms=patientInfos[2], Diagnosis=patientInfos[3],
-                           Prescription=patientInfos[4], conversation=conversation)
+                           Prescription=patientInfos[4], question_answers=question_answers)
 
 @app.route('/data/', methods=['POST', 'GET'])
 def data():
