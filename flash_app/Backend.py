@@ -4,7 +4,7 @@ import cohere
 import random
 
 
-co = cohere.Client('TeSX3H7M2qxB7XZuCueRmOhIOZUeL4rz0YU0MXaD')
+co = cohere.Client('kRVV3cOMjnoTO4gCRDKxb1imS0qlLw0EKnmilBuL')
 question_answers = []
 
 num_shot = 2
