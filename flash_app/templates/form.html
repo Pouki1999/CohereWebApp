@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form</title>
+    <style>
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+/* Button used to open the chat form - fixed at the bottom of the page */
+.open-button {
+  background-color: #555;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  position: fixed;
+  bottom: 23px;
+  right: 28px;
+  width: 280px;
+}
+
+/* The popup chat - hidden by default */
+.chat-popup {
+  display: block;
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+/* Add styles to the form container */
+.form-container {
+  max-width: 600px;
+  padding: 10px;
+  background-color: white;
+}
+
+/* Full-width textarea */
+.form-container textarea {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+  resize: none;
+  min-height: 200px;
+}
+
+/* When the textarea gets focus, do something */
+.form-container textarea:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit/send button */
+.form-container .btn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+</style>
+</head>
+
+<body>
+
+    <span style="color:black; font-size: 40px">A</span>
+    <span style="color:red; font-size: 40px">m</span>
+    <span style="color:black; font-size: 40px"> I</span>
+    <span style="color:red; font-size: 40px"> ok??</span>
+
+    <h3>Patient name: {{ patientName }}</h3>
+    <h3>Doctor name: {{ doctorName }}</h3>
+    <h3>Symptoms: {{ Symptoms }}</h3>
+    <h3>Diagnosis: {{ Diagnosis }}</h3>
+    <h3>Prescription: {{ Prescription }}</h3><br>
+
+
+    <form action="">
+
+    </form>
+
+    <div class="chat-popup" id="myForm">
+        <form method="POST" class="form-container">
+            <h1>I am Ok?</h1>
+            <h3>Please select the type of answer you expect to receive:</h3>
+            <input type="radio"
+                   id="easy"
+                   name="question_type"
+                   value="easy" required>
+            <label for="easy">Easy</label>
+            <input type="radio"
+                   id="complex"
+                   name="question_type"
+                   value="complex" required>
+            <label for="complex">Complex</label><br>
+            <label for="msg"><b>Ask your questions, get quick answers!</b></label>
+            <textarea placeholder="{{ conversation }}"
+                      name="question"
+                      value="{{ request.form['question'] }}"
+                      required></textarea>
+            <button type="submit" class="btn">Send</button>
+        </form>
+    </div>
+
+    <script>
+        function openForm() {
+            document.getElementById("myForm").style.display = "block";
+        }
+    </script>
+
+</body>
+</html>
