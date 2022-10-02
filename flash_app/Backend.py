@@ -14,6 +14,11 @@ preset_drug_questions = {"whatis": "What is placeholder_medname?",
                          "sideeffects": "What are the side effects of placeholder_medname?",
                          "placeholder": "placeholder_medname"}
 
+preset_questions_toprint = {"whatis": "What is my prescription drug?",
+                         "howdoes": "How does my prescription drug work?",
+                         "isitworking": "How do I know whether my prescription drug is working?",
+                         "sideeffects": "What are the side effects of my prescription drug?"}
+
 primers_dataset = {"whatis_easy": ["Q: What is ibuprofen?\nA: Ibuprofen is a drug that helps relief pain.",
                                    "Q: What is aspirin?\nA: Aspirin is an anti-inflammatory drug.",
                                    "Q:What is Ozempic?\nA: Ozempic is a single use injection pen for adults with type 2 diabetes mellitus."],
@@ -122,19 +127,29 @@ def form(fullPatientInfos):
         print(request.form)
         print(request.form['question'])
         print(request.form['question_type'])
-        answer = co.generate(
-                           model='xlarge',
-                           prompt=request.form['question'],
-                           max_tokens=80,
-                           temperature=0.2,
-                           k=0,
-                           p=0.15,
-                           frequency_penalty=0,
-                           presence_penalty=0,
-                           stop_sequences=[".\n"],
-                           return_likelihoods='NONE'
-                       ).generations[0].text
-        question_answers.append((request.form['question'], answer))
+        answer = ""
+        if 'q_type' in request.form.keys():
+            #one of the buttons were chosen
+            q_type = request.form['q_type']
+            inquired_drug = patientInfos[4]
+            answer_type = request.form['question_type']
+            answer = generate(q_type, inquired_drug, answer_type)
+            question_answers.append((preset_questions_toprint[q_type], answer))
+        else:
+            #freeform question
+            answer = co.generate(
+                            model='xlarge',
+                            prompt=request.form['question'],
+                            max_tokens=80,
+                            temperature=0.2,
+                            k=0,
+                            p=0.15,
+                            frequency_penalty=0,
+                            presence_penalty=0,
+                            stop_sequences=[".\n"],
+                            return_likelihoods='NONE'
+                        ).generations[0].text
+            question_answers.append((request.form['question'], answer))
         for qa in question_answers:
             conversation = conversation + qa[0] + '\n' + qa[1] + '\n'
 
