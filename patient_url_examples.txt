@@ -1,9 +1,13 @@
-http://127.0.0.1:5000/form/John Dee: Dr. Phil:Shivers:Cold:Tea 
+http://127.0.0.1:5000/form/John Dee:Dr. Phil:Shivers:Cold:Tea 
 
-http://127.0.0.1:5000/form/Emma Rousseau:Doc. Mayou:::
+http://127.0.0.1:5000/form/Emma Rousseau:Doc. Maillou:Hair loss:Alopecia:Minoxidil
 
-http://127.0.0.1:5000/form/::::
+http://127.0.0.1:5000/form/:Elaine Benes:Dr. Dyer:Panic Attacks:Anxiety Disorder:Xanax
 
-http://127.0.0.1:5000/form/::::
+http://127.0.0.1:5000/form/:George Constanza:Dr. Myer:Sore throat:Strep throat:Penicilin
 
-http://127.0.0.1:5000/form/::::
+http://127.0.0.1:5000/form/:Cosmo Kramer:Dr. Nyer:Flaky skin under feet:Athlete’s foot:Clotrimazol
+
+http://127.0.0.1:5000/form/:Jerry Seinfeld:Dr. Gyer:Trouble falling asleep:Insomnia:Melatonin
+
+http://127.0.0.1:5000/form/:Peter Newman:Dr. VIlleneuve:Skin rashes:Eczema:Methotextrate
