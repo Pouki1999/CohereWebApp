@@ -9,7 +9,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
 /* Button used to open the chat form - fixed at the bottom of the page */
 .open-button {
-  background-color: #555;
+  background-color: rgb(183, 194, 185);
   color: white;
   padding: 16px 20px;
   border: none;
@@ -100,22 +100,43 @@ body {font-family: Arial, Helvetica, sans-serif;}
     <div class="chat-popup" id="myForm">
         <form method="POST" class="form-container">
             <h1>I am Ok?</h1>
-            <h3>Please select the type of answer you expect to receive:</h3>
+            <h3>What kind of answer do you want:</h3>
             <input type="radio"
                    id="easy"
                    name="question_type"
                    value="easy" required>
-            <label for="easy">Easy</label>
+            <label for="easy">Easy and straightforward.</label>
             <input type="radio"
                    id="complex"
                    name="question_type"
                    value="complex" required>
-            <label for="complex">Complex</label><br>
-            <label for="msg"><b>Ask your questions, get quick answers!</b></label>
+            <label for="complex">Detailed please!</label><br>
+            <h3>Ask a preset question for more accurate answers :)</h3>
+            <input type="radio"
+                   id="whatis"
+                   name="q_type"
+                   value="whatis">
+            <label for="whatis">What is my prescription drug?</label><br>
+            <input type="radio"
+                   id="howdoes"
+                   name="q_type"
+                   value="howdoes">
+            <label for="howdoes">How does my prescription drug work?</label><br>
+            <input type="radio"
+                   id="isitworking"
+                   name="q_type"
+                   value="isitworking">
+            <label for="isitworking">How do I know whether my prescription drug is working?</label><br>
+            <input type="radio"
+                   id="sideeffects"
+                   name="q_type"
+                   value="sideeffects">
+            <label for="sideeffects">What are some side effects of my prescription drug?</label><br>
+            <label for="msg"><b>Or a freeform one! (but we can't our answer quality yet...) </b></label>
             <textarea placeholder="{{ conversation }}"
                       name="question"
                       value="{{ request.form['question'] }}"
-                      required></textarea>
+                      ></textarea>
             <button type="submit" class="btn">Send</button>
         </form>
     </div>
