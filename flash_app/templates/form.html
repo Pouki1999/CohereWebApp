@@ -97,9 +97,17 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
     </form>
 
-    <div class="chat-popup" id="myForm">
+    <div class="chat-popup" id="myForm" style="overflow-y: scroll">
         <form method="POST" class="form-container">
             <h1>I am Ok?</h1>
+            <label for="convolog"><b>Conversation Log</b></label>
+            {% for qa in question_answers %}
+              <p>Q: {{qa[0]}}</p>
+              
+              <p>A: {{qa[1]}}</p>
+              
+            {% endfor %}
+            <p>{{ conversation }}</p>
             <h3>What kind of answer do you want:</h3>
             <input type="radio"
                    id="easy"
@@ -133,7 +141,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
                    value="sideeffects">
             <label for="sideeffects">What are some side effects of my prescription drug?</label><br>
             <label for="msg"><b>Or a freeform one! (but we can't guarantee our answer quality yet...) </b></label>
-            <textarea placeholder="{{ conversation }}"
+            <textarea placeholder="..."
                       name="question"
                       value="{{ request.form['question'] }}"
                       ></textarea>
