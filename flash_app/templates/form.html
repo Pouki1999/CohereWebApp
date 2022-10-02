@@ -7,6 +7,10 @@
 body {font-family: Arial, Helvetica, sans-serif;}
 * {box-sizing: border-box;}
 
+textarea {
+  height: 30px;
+}
+
 /* Button used to open the chat form - fixed at the bottom of the page */
 .open-button {
   background-color: rgb(183, 194, 185);
@@ -25,10 +29,12 @@ body {font-family: Arial, Helvetica, sans-serif;}
 .chat-popup {
   display: block;
   position: fixed;
-  bottom: 0;
+  bottom: 5%;
   right: 15px;
   border: 3px solid #f1f1f1;
   z-index: 9;
+  height: 90%;
+  overflow-y: scroll
 }
 
 /* Add styles to the form container */
@@ -76,6 +82,10 @@ body {font-family: Arial, Helvetica, sans-serif;}
 .form-container .btn:hover, .open-button:hover {
   opacity: 1;
 }
+
+.sendquestion {
+  height: 30px;
+}
 </style>
 </head>
 
@@ -85,6 +95,8 @@ body {font-family: Arial, Helvetica, sans-serif;}
     <span style="color:red; font-size: 40px">m</span>
     <span style="color:black; font-size: 40px"> I</span>
     <span style="color:red; font-size: 40px"> ok??</span>
+
+    <img src="https://i.imgur.com/ydhY1IU.png">
 
     <h3>Patient name: {{ patientName }}</h3>
     <h3>Doctor name: {{ doctorName }}</h3>
@@ -97,17 +109,18 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
     </form>
 
-    <div class="chat-popup" id="myForm" style="overflow-y: scroll">
+    <div class="chat-popup" id="myForm">
         <form method="POST" class="form-container">
             <h1>I am Ok?</h1>
             <label for="convolog"><b>Conversation Log</b></label>
+            <div>
             {% for qa in question_answers %}
               <p>Q: {{qa[0]}}</p>
               
               <p>A: {{qa[1]}}</p>
               
             {% endfor %}
-            <p>{{ conversation }}</p>
+            </div>
             <h3>What kind of answer do you want:</h3>
             <input type="radio"
                    id="easy"
@@ -143,8 +156,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
             <label for="msg"><b>Or a freeform one! (but we can't guarantee our answer quality yet...) </b></label>
             <textarea placeholder="..."
                       name="question"
-                      value="{{ request.form['question'] }}"
-                      ></textarea>
+                      value="{{ request.form['question'] }}"></textarea>
             <button type="submit" class="btn">Send</button>
         </form>
     </div>
